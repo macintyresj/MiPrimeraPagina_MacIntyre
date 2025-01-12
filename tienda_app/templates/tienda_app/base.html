@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tienda</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">Tienda de Ropa Usada</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_usuario' %}">Agregar Usuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ver_pedidos' %}">Ver Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

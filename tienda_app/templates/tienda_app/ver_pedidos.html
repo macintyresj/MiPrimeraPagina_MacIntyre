@@ -1,0 +1,18 @@
+{% extends 'tienda_app/base.html' %}
+
+{% block content %}
+<h1>Pedidos</h1>
+<div class="row">
+    {% for pedido in pedidos %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Pedido de {{ pedido.usuario.nombre }}</h5>
+                <p class="card-text">Producto: {{ pedido.producto.titulo }}</p>
+                <p class="card-text">Fecha: {{ pedido.fecha }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

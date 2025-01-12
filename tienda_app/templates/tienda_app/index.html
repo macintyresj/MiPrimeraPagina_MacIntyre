@@ -1,0 +1,25 @@
+{% extends 'tienda_app/base.html' %}
+
+{% block content %}
+<h1>Productos</h1>
+<form class="form-inline my-2 my-lg-0" action="{% url 'index' %}" method="get">
+    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="q">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+<div class="row mt-4">
+    {% for producto in productos %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ producto.titulo }}</h5>
+                <p class="card-text">{{ producto.descripcion }}</p>
+                <p class="card-text">Talle: {{ producto.talle }}</p>
+                <p class="card-text">Color: {{ producto.color }}</p>
+                <p class="card-text">Precio: ${{ producto.precio }}</p>
+                <a href="{% url 'realizar_pedido' producto.id %}" class="btn btn-secondary">Comprar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'tienda_app/base.html' %}
+
+{% block content %}
+<h1>Realizar Pedido</h1>
+<h2>Producto: {{ producto.titulo }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-secondary">Realizar Pedido</button>
+</form>
+{% endblock %}
