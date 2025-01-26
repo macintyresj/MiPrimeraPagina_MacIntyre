@@ -1,0 +1,10 @@
+{% extends 'tienda_app/base.html' %}
+{% block content %}
+<h1>Eliminar Entrada: {{ page.title }}</h1>
+<p>¿Estás seguro de que deseas eliminar esta entrada?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
+<a href="{% url 'pages' %}">Cancelar</a>
+{% endblock %}

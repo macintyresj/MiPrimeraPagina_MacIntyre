@@ -1,0 +1,18 @@
+{% extends 'tienda_app/base.html' %}
+{% block content %}
+<a href="{% url 'pages' %}" class="d-flex justify-content-end t-dark"> ⬅️Volver</a>
+
+
+<h1>{{ page.title }}</h1>
+<p>{{ page.content }}</p>
+<div>
+    {% if user.is_authenticated %}            <!-- Solo mostrar si el usuario está logueado -->
+        <a href="{% url 'update_page' pk=page.pk %}">Editar</a> | 
+        <a href="{% url 'delete_page' pk=page.pk %}">Eliminar</a>
+    {% endif %}
+</div>
+<div class="d-flex justify-content-end">
+    <a href="{% url 'index' %}" class= "btn btn-secondary">Ir a la tienda</a>
+</div>
+
+{% endblock %}

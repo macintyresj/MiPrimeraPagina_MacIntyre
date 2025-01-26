@@ -1,0 +1,31 @@
+{% extends 'tienda_app/base.html' %}
+{% block content %}
+<h1>Entradas del Blog</h1>
+{% if pages %}
+    <ul>
+        {% for page in pages %}
+            <li>
+                <h2><a href="{% url 'page_detail' page.id %}">{{ page.title }}</a></h2>
+                
+                {% if user.is_authenticated %}
+                    <!-- Solo mostrar si está logueado -->
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'update_page' pk=page.pk %}" class="mr-1">Editar </a> | 
+                        <a href="{% url 'delete_page' pk=page.pk %}" class ="ml-1"> Eliminar</a>
+                    </div>
+                {% endif %}
+                <p>{{ page.content|truncatewords:100 }}</p>   
+                <a href="{% url 'page_detail' pk=page.pk %}">Leer más</a>                
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay páginas aún.</p>
+{% endif %}
+{% if user.is_authenticated %}
+<div class="d-flex">
+    <a href="{% url 'create_page' %}" class="btn btn-success ml-auto m-4">Crear nueva entrada</a>
+</div>
+
+{% endif %}
+{% endblock %}

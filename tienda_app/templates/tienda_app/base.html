@@ -1,26 +1,31 @@
-<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Tienda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa Usada</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'index' %}">Tienda de Ropa Usada</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light theme-dark">
+        <a class="navbar-brand" href="{% url 'pages' %}">BLOG</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar Producto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'agregar_usuario' %}">Agregar Usuario</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'ver_pedidos' %}">Ver Pedidos</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Tienda</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Acerca de nuestro Proyecto</a></li>
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="d-flex justify-content-end">
+                <li class="nav-item list-unstyled"><a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                <li class="nav-item list-unstyled"><a class="nav-link" href="{% url 'create_page' %}">Crear página</a></li>
+                {% else %}
+                <li class="nav-item list-unstyled"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li class="nav-item list-unstyled"><a class="nav-link" href="{% url 'signup' %}">Registrar</a></li>
+            {% endif %}
+            </ul>
+        
         </div>
     </nav>
+
     <div class="container">
         {% block content %}
         {% endblock %}
