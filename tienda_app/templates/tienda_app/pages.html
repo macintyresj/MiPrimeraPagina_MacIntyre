@@ -4,18 +4,19 @@
 {% if pages %}
     <ul>
         {% for page in pages %}
-            <li>
+            <li class="list-unstyled">
                 <h2><a href="{% url 'page_detail' page.id %}">{{ page.title }}</a></h2>
                 
-                {% if user.is_authenticated %}
-                    <!-- Solo mostrar si está logueado -->
+                {% if user.is_authenticated and user == page.author %}
+                    <!-- Solo mostrar si está logueado y es el autor -->
                     <div class="d-flex justify-content-end">
-                        <a href="{% url 'update_page' pk=page.pk %}" class="mr-1">Editar </a> | 
-                        <a href="{% url 'delete_page' pk=page.pk %}" class ="ml-1"> Eliminar</a>
+                        <a href="{% url 'update_page' pk=page.pk %}" class="mr-1">Editar</a> | 
+                        <a href="{% url 'delete_page' pk=page.pk %}" class ="ml-1">Eliminar</a>
                     </div>
                 {% endif %}
                 <p>{{ page.content|truncatewords:100 }}</p>   
-                <a href="{% url 'page_detail' pk=page.pk %}">Leer más</a>                
+                <a href="{% url 'page_detail' pk=page.pk %}">Leer más</a> 
+                <hr>               
             </li>
         {% endfor %}
     </ul>

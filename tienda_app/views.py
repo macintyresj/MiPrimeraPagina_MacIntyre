@@ -137,9 +137,17 @@ def update_page(request, pk):
 @login_required
 def delete_page(request, pk):
     page = get_object_or_404(Page, pk=pk)
-    if request.user == page.author:
+    
+    if request.method == 'POST':
         page.delete()
+        return redirect('pages')
+    if request.user == page.author:
+        return render(request, 'tienda_app/confirm_delete.html', {'page': page})
+        # page.delete()
+    
     return redirect('pages')
+
+
 
 # Login y Logout
 def login_view(request):
@@ -148,7 +156,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('index')
+            return redirect('pages')
     else:
         form = AuthenticationForm()
     return render(request, 'tienda_app/login.html', {'form': form})
@@ -165,4 +173,4 @@ def signup_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('index')
+    return redirect('pages')
