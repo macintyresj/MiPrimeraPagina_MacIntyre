@@ -1,0 +1,10 @@
+{% extends 'tienda_app/base.html' %}
+{% block content %}
+<h1>Cambiar Contraseña</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+</form>
+<a href="{% url 'perfil_usuario' %}" class="btn btn-secondary">Cancelar</a>
+{% endblock %}

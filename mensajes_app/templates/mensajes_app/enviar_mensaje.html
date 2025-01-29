@@ -1,0 +1,11 @@
+{% extends 'tienda_app/base.html' %}
+
+{% block content %}
+  <h1>Enviar Mensaje</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Enviar</button>
+    <a href="{% url 'mensajes:inbox' %}" class="btn btn-light">Volver</a>
+  </form>
+{% endblock %}

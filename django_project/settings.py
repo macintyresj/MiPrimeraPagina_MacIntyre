@@ -29,6 +29,9 @@ DEBUG = True
 ALLOWED_HOSTS = [".replit.dev", ".replit.app","localhost","127.0.0.1",]
 CSRF_TRUSTED_ORIGINS = ["https://*.replit.dev", "https://*.replit.app", ]
 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tienda_app'
+    'tienda_app',
+    'ckeditor',
+    'mensajes_app',
 ]
 
 MIDDLEWARE = [

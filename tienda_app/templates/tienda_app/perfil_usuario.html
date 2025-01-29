@@ -1,0 +1,8 @@
+{% extends 'tienda_app/base.html' %}
+{% block content %}
+<h1>Perfil de Usuario</h1>
+<p>Nombre: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Fecha de Creación: {{ user.date_joined }}</p>
+<a href="{% url 'cambiar_contrasena' %}" class="btn btn-outline-primary">Cambiar Contraseña</a>
+{% endblock %}

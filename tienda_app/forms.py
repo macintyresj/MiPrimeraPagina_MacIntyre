@@ -19,8 +19,12 @@ class OrdenForm(forms.ModelForm):
 class PageForm(forms.ModelForm):
     class Meta:
         model = Page
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'imagen'] 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),  # Agregar clase Bootstrap
-            'content': forms.Textarea(attrs={'class': 'form-control'}),  # Agregar clase Bootstrap
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'imagen': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+        
         }
+
+        

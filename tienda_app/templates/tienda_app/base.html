@@ -25,13 +25,24 @@
                 <li class="nav-item list-unstyled mt-2"><a class="nav-link btn btn-outline-success rounded-pill" href="{% url 'signup' %}">Registrar</a></li>
             {% endif %}
             </ul>
-        
+        </div>
+        <div class="navbar-nav">
+            <!-- Botón con icono de avatar -->
+            <a href="/perfil" class="btn btn-outline-success rounded-circle d-flex align-items-center justify-content-center ml-4" style="width: 50px; height: 50px; font-size: 50px;">
+                <i class="bi bi-person-circle"></i> 
+            </a>
         </div>
     </nav>
+    <div class="position-fixed top-0 end-0 p-3 mt-3">
+        <a href="/mensajes/inbox" class="btn btn-success rounded-circle p-2" style="width: 60px; height: 60px; font-size: 40px;">
+            <i class="bi bi-envelope"></i>
+        </a>
+    </div>
 
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
+   
 </body>
 </html>

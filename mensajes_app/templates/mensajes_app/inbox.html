@@ -1,0 +1,28 @@
+{% extends 'tienda_app/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Mensajes Recibidos</h1>
+    
+    <!-- Lista de mensajes -->
+    <ul class="list-group">
+      {% for mensaje in mensajes_recibidos %}
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <div>
+              <strong>{{ mensaje.emisor.username }}</strong>: {{ mensaje.contenido }} 
+            </div>
+            <small class="text-muted">{{ mensaje.creado_en }}</small>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Botón para enviar mensaje -->
+    <div class="mt-4">
+      <a href="{% url 'mensajes:enviar_mensaje' %}" class="btn btn-success">Nuevo mensaje</a>
+      <a href="{% url 'mensajes:inbox' %}" class="btn btn-light">Volver</a>
+
+    </div>
+  </div>
+{% endblock %}

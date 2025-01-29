@@ -1,17 +1,6 @@
-# from django.urls import path
-# from . import views
-
-# urlpatterns = [
-#     path('', views.index, name='index'),
-#     path('agregar_producto/', views.agregar_producto, name='agregar_producto'),
-#     path('agregar_usuario/', views.agregar_usuario, name='agregar_usuario'),
-#     path('ver_pedidos/', views.ver_pedidos, name='ver_pedidos'),
-#     path('realizar_pedido/<int:producto_id>/',
-#          views.realizar_pedido,
-#          name='realizar_pedido'),
-# ]
-
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -33,4 +22,8 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
     path('logout/', views.logout_view, name='logout'),
+    path('perfil/', views.perfil_usuario, name='perfil_usuario'),
+    path('cambiar-contrasena/', views.cambiar_contrasena, name='cambiar_contrasena'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
