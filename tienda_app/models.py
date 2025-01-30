@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField  # Asegúrate de tener django-ckeditor instalado
+from ckeditor.fields import RichTextField  
+
 
 class Producto(models.Model):
     titulo = models.CharField(max_length=100)
@@ -37,3 +38,4 @@ class Page(models.Model):
     
     def __str__(self):
         return self.title
+    

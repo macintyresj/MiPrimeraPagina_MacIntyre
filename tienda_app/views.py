@@ -4,7 +4,9 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from .models import Producto, Usuario, Orden, Page
 from .forms import ProductoForm, UsuarioForm, OrdenForm, PageForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from .forms import CustomUserCreationForm
 from .models import Producto
+from .forms import EditarEmailForm
 
 def index(request):
     query = request.GET.get('q')
@@ -48,7 +50,8 @@ def realizar_pedido(request, producto_id):
     else:
         form = OrdenForm(initial={'producto': producto})
     return render(request, 'tienda_app/realizar_pedido.html', {'form': form, 'producto': producto})
-
+###ENTREGA FINAL###
+#===============================================================================
 # Vistas para el Blog (Pages)
 def about(request):
     return render(request, 'tienda_app/about.html')
@@ -101,8 +104,6 @@ def delete_page(request, pk):
     
     return redirect('pages')
 
-
-
 # Login y Logout
 def login_view(request):
     if request.method == 'POST':
@@ -122,7 +123,7 @@ def signup_view(request):
             form.save()
             return redirect('login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'tienda_app/signup.html', {'form': form})
 
 def logout_view(request):
@@ -132,9 +133,20 @@ def logout_view(request):
 @login_required
 def perfil_usuario(request):
     if request.method == 'POST':
-        # Implementación de lógica de edición del perfil aquí
-        pass
-    return render(request, 'tienda_app/perfil_usuario.html', {'user': request.user})
+        
+        if 'email' in request.POST:
+            email_form = EditarEmailForm(request.POST, instance=request.user)
+            if email_form.is_valid():
+                email_form.save()
+                
+                return redirect('perfil_usuario')  
+
+    else:
+        
+        email_form = EditarEmailForm(instance=request.user)
+
+    return render(request, 'tienda_app/perfil_usuario.html', {'user': request.user, 'email_form': email_form}) # type: ignore
+
 
 @login_required
 def cambiar_contrasena(request):

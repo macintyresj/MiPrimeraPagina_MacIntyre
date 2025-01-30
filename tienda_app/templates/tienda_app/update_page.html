@@ -1,9 +1,38 @@
 {% extends 'tienda_app/base.html' %}
+
 {% block content %}
 <h1>Editar Página: {{ page.title }}</h1>
+
+<!-- Formulario -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-dark">Actualizar Página</button>
+
+    <!-- Campo de Título -->
+    <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="form-label text-light">{{ form.title.label }}</label>
+        <input type="text" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" 
+               value="{{ form.title.value|default_if_none:'' }}" class="form-control">
+    </div>
+
+    <!-- Campo de Contenido (ocupa todo el ancho) -->
+    <div class="mb-3">
+        <label for="{{ form.content.id_for_label }}" class="form-label text-light">{{ form.content.label }}</label>
+        <textarea name="{{ form.content.name }}" id="{{ form.content.id_for_label }}" class="form-control" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
+    </div>
+
+    <!-- Campo de Imagen (mitad del ancho, alineado a la derecha) -->
+    <div class="mb-3">
+        <label for="{{ form.image.id_for_label }}" class="form-label text-light">Imagen</label>
+        <div>
+            <input type="file" name="{{ form.image.name }}" id="{{ form.image.id_for_label }}" class="form-control mr-5">
+        </div>
+    </div>
+
+    <!-- Botones Justificados a la Derecha -->
+    <div class="d-flex justify-content-end mt-3">
+        <button type="submit" class="btn btn-dark m-1">Actualizar Página</button>
+        <a href="{% url 'pages' %}" class="btn btn-secondary m-1">Cancelar</a>
+    </div>
 </form>
+
 {% endblock %}

@@ -5,16 +5,15 @@
     <ul>
         {% for page in pages %}
             <li class="list-unstyled">
-
-                <h2><a href="{% url 'page_detail' page.id %}" class="text-dark">{{ page.title }}</a></h2>
-                
                 {% if user.is_authenticated and user == page.author %}
-                    <!-- Solo mostrar si está logueado y es el autor -->
-                    <div class="d-flex justify-content-end">
-                        <a href="{% url 'update_page' pk=page.pk %}" class="mr-1">Editar</a> | 
-                        <a href="{% url 'delete_page' pk=page.pk %}" class ="ml-1 text-danger">Eliminar</a>
-                    </div>
+                <!-- Solo mostrar si está logueado y es el autor -->
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'update_page' pk=page.pk %}" class="mr-1">Editar</a> | 
+                    <a href="{% url 'delete_page' pk=page.pk %}" class ="ml-1 text-danger">Eliminar</a>
+                </div>
                 {% endif %}
+                <h2><a href="{% url 'page_detail' page.id %}" class="text-dark">{{ page.title }}</a></h2>
+                              
                 {% if page.imagen %}
                     <div class="mt-3">
                         <img src="{{ page.imagen.url }}" alt="Imagen de la página" class="img-fluid" style="max-width: 100%; height: auto;">

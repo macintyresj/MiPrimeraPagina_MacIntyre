@@ -1,9 +1,29 @@
 {% extends 'tienda_app/base.html' %}
+
 {% block content %}
-<h1>Registrarse</h1>
+<h1>Crear Cuenta</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <div class="mb-3">
+        <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+        {{ form.username }}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+        {{ form.email }}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.password1.id_for_label }}" class="form-label">{{ form.password1.label }}</label>
+        {{ form.password1 }}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.password2.id_for_label }}" class="form-label">{{ form.password2.label }}</label>
+        {{ form.password2 }}
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Crear cuenta</button>
 </form>
 {% endblock %}
